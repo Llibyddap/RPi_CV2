@@ -39,7 +39,8 @@ The first thing the script does is migrate the root drive and operating system t
 After setting up the USB drive the script follows very closely to Adrian's tutorial.  When the script is finished you'll see a DONE message.  The DONE message does not mean that the script completed without error or correctly - the script has no error trapping.  Upon completion, the easiest way to test a successful run is:
       ```
       pi@raspberrypi:~ $ python3
-      
+      ```
+      ```
       >>>import cv2
       >>>cv2.__file__
       ```
