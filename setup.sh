@@ -17,15 +17,15 @@
 #               iii) installs OpenCV 4 dependencies                             #
 #               iv)  builds OpenCV 4 from source files                          #
 #                                                                               #
-#   Notes:	  	This script implements the tutorial instructions provided by    #
-#		       		Adrian Rosebrock @ pyimagesearch.com	                    #
-#										                                        #
-#  		    		( https://tinyurl.com/vhue5xl )                             #
+#   Notes:      This script implements the tutorial instructions provided by    #
+#               Adrian Rosebrock @ pyimagesearch.com                            #
 #                                                                               #
-#   Install:	  Add ssh.txt to boot drive and ssh into the Raspberry Pi.      #
-#		      	  From the home directory for pi:                               #
-#				                                                                #
-#			      	pi@raspberrypi $	                                        #
+#               ( https://tinyurl.com/vhue5xl )                                 #
+#                                                                               #
+#   Install:    Add ssh.txt to boot drive and ssh into the Raspberry Pi.        #
+#               From the home directory for pi:                                 #
+#                                                                               #
+#               pi@raspberrypi $                                                #
 #                                                                               #
 #################################################################################
 
