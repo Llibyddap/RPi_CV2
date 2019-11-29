@@ -37,12 +37,11 @@ Follow the standard instructions for buring the Buster image to the microSD card
 The first thing the script does is migrate the root drive and operating system to the USB drive for the purpose of minimizing IO activity on the microSD card.  The USB drive will be the ahrd drive for the Raspi.
 
 After setting up the USB drive the script follows very closely to Adrian's tutorial.  When the script is finished you'll see a DONE message.  The DONE message does not mean that the script completed without error or correctly - the script has no error trapping.  Upon completion, the easiest way to test a successful run is:
-      ```
+
       pi@raspberrypi:~ $ python3
-      ```
-      ```
+      
       >>>import cv2
       >>>cv2.__file__
-      ```
+      
 You can see the details from Adrian's page for an explanation.
 
