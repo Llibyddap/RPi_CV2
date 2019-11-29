@@ -25,20 +25,21 @@ Follow the standard instructions for buring the Buster image to the microSD card
 
 4. From the user pi home directory (where you should be after your SSH) execute the following:
       ```
-      git clone https://github.com/Llibyddap/RPi_CV2.git
+      pi@raspberrypi:~ $ git clone https://github.com/Llibyddap/RPi_CV2.git
 
-      mv /home/pi/RPi_CV2/setup.sh setup.sh
+      pi@raspberrypi:~ $ mv /home/pi/RPi_CV2/setup.sh setup.sh
 
-      chmod +x setup.sh
+      pi@raspberrypi:~ $ chmod +x setup.sh
 
-      sudo ./setup.sh
+      pi@raspberrypi:~ $ sudo ./setup.sh
       ```
 ##  Notes
 The first thing the script does is migrate the root drive and operating system to the USB drive for the purpose of minimizing IO activity on the microSD card.  The USB drive will be the ahrd drive for the Raspi.
 
 After setting up the USB drive the script follows very closely to Adrian's tutorial.  When the script is finished you'll see a DONE message.  The DONE message does not mean that the script completed without error or correctly - the script has no error trapping.  Upon completion, the easiest way to test a successful run is:
       ```
-      >>>python3
+      pi@raspberrypi:~ $ python3
+      
       >>>import cv2
       >>>cv2.__file__
       ```
