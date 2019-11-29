@@ -2,27 +2,27 @@
 
 #################################################################################
 #                                                                               #
-#   File:  	    setup.sh					    		                        #
-#	Name:	    	Bill Armstrong					                            #
-#	Date:	    	November 25, 2019				                            #
-#	Plateform:	Raspberry Pi 4; USB Flashdrive	                                #
-#	OS:		    	Raspbian Buster	                                            #
-#												                                #
-#	Desc:	    	Install Script for OpenCV 4 on USB Flash Drive Mount        #
-#												                                #
-#	Usage:	  	Script 							                                #
-#				          	i)   partitions, formats and mounts a USB drive to  #
-#					             a Raspberry Pi.				                #
-#			          		ii)  migrates root directory to USB drive.          #
-#			           		iii) installs OpenCV 4 dependencies	                #
-#		          			iv)  builds OpenCV 4 from source files	            #
-#											                                    #
-#	Notes:	  	This script implements the tutorial instructions provided by    #
+#   File:       setup.sh                                                        #
+#   Name:       Bill Armstrong                                                  #
+#   Date:       November 25, 2019                                               #
+#   Plateform:  Raspberry Pi 4; USB Flashdrive                                  #
+#   OS:         Raspbian Buster                                                 #
+#                                                                               #
+#   Desc:       Install Script for OpenCV 4 on USB Flash Drive Mount            #
+#                                                                               #
+#   Usage:      Script                                                          #
+#               i)   partitions, formats and mounts a USB drive to              #
+#                    a Raspberry Pi.                                            #
+#               ii)  migrates root directory to USB drive.                      #
+#               iii) installs OpenCV 4 dependencies                             #
+#               iv)  builds OpenCV 4 from source files                          #
+#                                                                               #
+#   Notes:	  	This script implements the tutorial instructions provided by    #
 #		       		Adrian Rosebrock @ pyimagesearch.com	                    #
 #										                                        #
 #  		    		( https://tinyurl.com/vhue5xl )                             #
 #                                                                               #
-#	Install:	  Add ssh.txt to boot drive and ssh into the Raspberry Pi.      #
+#   Install:	  Add ssh.txt to boot drive and ssh into the Raspberry Pi.      #
 #		      	  From the home directory for pi:                               #
 #				                                                                #
 #			      	pi@raspberrypi $	                                        #
