@@ -27,7 +27,7 @@ Follow the standard instructions for buring the Buster image to the microSD card
       ```
       pi@raspberrypi:~ $ git clone https://github.com/Llibyddap/RPi_CV2.git
 
-      pi@raspberrypi:~ $ mv /home/pi/RPi_CV2/setup.sh setup.sh
+      pi@raspberrypi:~ $ cp /home/pi/RPi_CV2/setup.sh setup.sh
 
       pi@raspberrypi:~ $ chmod +x setup.sh
 
