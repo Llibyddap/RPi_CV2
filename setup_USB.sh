@@ -29,6 +29,8 @@
 #                                                                               #
 #################################################################################
 
+exec 2>&1 | tee /home/pi/setup_logs.txt
+
 clear
 
 printf "\e[42m %-80s \e[m \n" "** Beginning apt-get updates and rsync install"
