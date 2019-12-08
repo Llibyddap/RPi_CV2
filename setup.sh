@@ -32,48 +32,52 @@
 clear
 
 printf "\e[42m %-80s \e[m \n" "** Beginning apt-get updates and rsync install"
-echo "++++  Update the Raspberry Pi libraries..."
+echo -e "/n++++  Update the Raspberry Pi libraries..."
 apt-get update
-echo "++++  Checking for rsync and installing it if necessary..."
+echo -e "/n++++  Checking for rsync and installing it if necessary..."
 apt-get install rsync -y
 
+echo
 printf "\e[42m %-80s \e[m \n" "** Beginning sgdisk flash drive partitioning"
 
+echo -e "/n++++  Checking for mounted stuff..."
 if grep "sda" /proc/mounts; then
-    echo "++++  USB mouinted, attempting to unmount..."
+    echo -e "/n++++  USB mouinted, attempting to unmount..."
     umount /dev/sda1
     if [ $? -eq 0 ]; then
-        echo "++++  Successfully unmounted USB - - continuing..."
+        echo -e "/n++++  Successfully unmounted USB - - continuing..."
     else 
-    echo "++++  No mounted USB detected - - continuing..."
+    echo -e "/n++++  No mounted USB detected - - continuing..."
     fi
 else
-    choe "++++  USB isn't mounted - - continuing..."
+    echo -e "/n++++  USB isn't mounted - - continuing..."
 fi
 
-echo "++++  Removing GPT and MBR structions - - starting wtih a clean slate..."
+echo -e "/n++++  Removing GPT and MBR structions - - starting wtih a clean slate..."
 sgdisk -Z /dev/sda          #  destroy GPT and MBR structures
 sgdisk -n 0:0:0 /dev/sda    #  creating new partition for entire usb
 sgdisk -v /dev/sda
 if [ $? -eq 1 ]; then
-    echo "++++  Critical error partitioning USB drive - - exiting..."
+    echo -e "/n++++  Critical error partitioning USB drive - - exiting..."
     exit
 else
-    echo "++++  Disc partitioning completed and validated..."
+    echo -e "/n++++  Disc partitioning completed and validated..."
 fi
-echo "++++  New USB Partition Data..."
+echo -e "/n++++  New USB Partition Data..."
 sgdisk -p /dev/sda
 
-echo "++++  Updating the Raspberry Pi's system files to reflect the new partitions..."
+echo -e "/n++++  Updating the Raspberry Pi's system files to reflect the new partitions..."
 partprobe /dev/sda1
 
+echo
 printf "\e[42m %-80s \e[m \n" "** Beginning mke2fs flash drive formatting"
 mke2fs -t ext4 -L usbfs /dev/sda1 -F
 
 printf "\e[42m %-80s \e[m \n" "** Mounting flash drive to RaspberryPi @ /mnt"
 mount /dev/sda1 /mnt
-echo "file system mounted"
+echo -e "/nfile system mounted"
 
+echo
 printf "\e[42m %-80s \e[m \n" "** Syncing SD filesystem to USB drive"
 printf "\e[44m %-40s \e[m \n" "** Details suppressed - - this is a very long process..."
 echo
