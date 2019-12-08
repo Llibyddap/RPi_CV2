@@ -45,7 +45,7 @@ if grep "sda" /proc/mounts; then
     echo "++++  USB mouinted, attempting to unmount..."
     umount /dev/sda1
     if [ $? -eq 0 ]; then
-        echo "n++++  Successfully unmounted USB - - continuing..."
+        echo "++++  Successfully unmounted USB - - continuing..."
     else 
     echo "++++  No mounted USB detected - - continuing..."
     fi
@@ -56,7 +56,7 @@ fi
 echo "++++  Removing GPT and MBR structions - - starting wtih a clean slate..."
 sgdisk -Z /dev/sda          #  destroy GPT and MBR structures
 sgdisk -n 0:0:0 /dev/sda    #  creating new partition for entire usb
-sgdisk -v /dev/sda
+sgdisk -v /dev/sda          #  validating sgdisk
 if [ $? -eq 1 ]; then
     echo "++++  Critical error partitioning USB drive - - exiting..."
     exit
@@ -64,7 +64,7 @@ else
     echo "++++  Disc partitioning completed and validated..."
 fi
 echo "++++  New USB Partition Data..."
-sgdisk -p /dev/sda
+sgdisk -p /dev/sda          #  if successful; providing partition information
 
 echo "++++  Updating the Raspberry Pi's system files to reflect the new partitions..."
 partprobe /dev/sda1
@@ -83,7 +83,7 @@ printf "\e[44m %-40s \e[m \n" "** Details suppressed - - this is a very long pro
 echo
 rsync -ax --info=progress2 / /mnt
 
-printf "\e[42m %-80s \e[m \n" "**  Backing up /boot/mdline"
+printf "\e[42m %-80s \e[m \n" "**  Backing up /boot/cmdline.txt"
 cp /boot/cmdline.txt /boot/cmdline.sd
 
 printf "\e[42m %-80s \e[m \n" "**  Capturing mounted drives and partitions"
