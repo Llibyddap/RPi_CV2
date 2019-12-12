@@ -29,7 +29,8 @@
 #                                                                               #
 #################################################################################
 
-exec 2>&1 | tee /home/pi/setup_logs.txt
+#exec |& tee /home/pi/setup_logs.txt
+exec &> >(tee /home/pi/setup_logs)
 
 clear
 
@@ -55,21 +56,31 @@ else
     echo "++++  USB isn't mounted - - continuing..."
 fi
 
-echo "++++  Removing GPT and MBR structions - - starting wtih a clean slate..."
-sgdisk -Z /dev/sda          #  destroy GPT and MBR structures
-sgdisk -n 0:0:0 /dev/sda    #  creating new partition for entire usb
-sgdisk -v /dev/sda          #  validating sgdisk
-if [ $? -eq 1 ]; then
-    echo "++++  Critical error partitioning USB drive - - exiting..."
-    exit
-else
-    echo "++++  Disc partitioning completed and validated..."
-fi
-echo "++++  New USB Partition Data..."
-sgdisk -p /dev/sda          #  if successful; providing partition information
+#echo "++++  Removing GPT and MBR structions - - starting wtih a clean slate..."
+#sgdisk -Z /dev/sda          #  destroy GPT and MBR structures
+#sgdisk -n 0:0:0 /dev/sda    #  creating new partition for entire usb
+#sgdisk -v /dev/sda          #  validating sgdisk
+#if [ $? -eq 1 ]; then
+#    echo "++++  Critical error partitioning USB drive - - exiting..."
+#    exit
+#else
+#    echo "++++  Disc partitioning completed and validated..."
+#fi
+#echo "++++  New USB Partition Data..."
+#sgdisk -p /dev/sda          #  if successful; providing partition information
 
-echo "++++  Updating the Raspberry Pi's system files to reflect the new partitions..."
-partprobe /dev/sda1
+#echo "++++  Updating the Raspberry Pi's system files to reflect the new partitions..."
+#partprobe /dev/sda1
+#if [ $? -eq 1 ]; then
+#    echo "++++  Critical error updating kernal with new partitions - - exiting..."
+#    exit
+#else
+#    echo "++++  Kernal updated with new partition tables..."
+#fi
+
+wipefs -a /dev/sda
+
+echo 'type=83' | sfdisk /dev/sda
 
 echo
 printf "\e[42m %-80s \e[m \n" "** Beginning mke2fs flash drive formatting"
@@ -78,6 +89,11 @@ mke2fs -t ext4 -L usbfs /dev/sda1 -F
 printf "\e[42m %-80s \e[m \n" "** Mounting flash drive to RaspberryPi @ /mnt"
 mount /dev/sda1 /mnt
 echo "file system mounted"
+
+
+
+
+
 
 echo
 printf "\e[42m %-80s \e[m \n" "** Syncing SD filesystem to USB drive"
